@@ -1,16 +1,190 @@
-body {
-  border: 2px solid black;
-  padding: 10px;
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+  --main-bg-color: #d2b48c;
+  --nav-bg-color: #8b4513;
+  --accent-color: #45a049;
+  --text-color: #ffffff;
+  --card-bg-color: #f0fff0;
+  --font-size-base: 1rem; /* base font size (relative unit) */
 }
 
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: var(--main-bg-color, #deb887);
+  color: #333;
+  padding: 2%;
+  font-size: var(--font-size-base);
+  min-height: 100dvh; /* ✅ dynamic viewport unit */
+}
 
+/* -----------------------------
+   Navigation
+------------------------------ */
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+nav li {
+  flex: 0 1 auto;
+}
+
+nav a {
+  display: block;
+  padding: 0.8em 1.5em; /* relative units */
+  font-size: 1.2rem;
+  background-color: var(--nav-bg-color, brown);
+  color: var(--text-color, white);
+  text-decoration: none;
+  border-radius: 0.5em;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+nav a:hover {
+  background-color: var(--accent-color, green);
+  transform: scale(1.1);
+}
+
+/* -----------------------------
+   Hero Card
+------------------------------ */
 hero-card {
   display: block;
-  border: 2px solid #4CAF50;
-  border-radius: 10px;
-  padding: 15px;
-  margin: 10px 0;
-  background-color: #f0fff0;
-  font-family: sans-serif;
+  border: 2px solid #D2A679; 
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem auto;
+  background-color: color(display-p3 0.54 0.36 0.24); 
+  color: color(display-p3 0.95 0.94 0.91);
+  font-family: 'Roboto', sans-serif;
+  animation: fadeIn 1.5s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  max-width: 800px; /* limits width on large screens */
 }
 
+hero-card h2 {
+  color: #D2A679; 
+  margin-bottom: 0.5rem;
+}
+
+hero-card p {
+  line-height: 1.5;
+}
+
+hero-card ul, hero-card ol {
+  margin-left: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+hero-card li {
+  margin-bottom: 0.5rem;
+}
+
+hero-card li strong {
+  color: #FFD700; /* gold text */
+  background: rgba(255, 215, 0, 0.1); 
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  font-family: 'Georgia', serif;
+}
+
+hero-card img {
+  display: block;
+  width: 12.5%;       /* 👈 1/8 = 12.5% of hero-card width */
+  height: auto;
+  margin: 0 auto 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  object-fit: contain; /* keeps image aspect ratio */
+}
+
+/* -----------------------------
+   Standalone RTA Image
+------------------------------ */
+.rta-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  margin: 1rem auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* -----------------------------
+   Animation
+------------------------------ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -----------------------------
+   Responsive Design
+------------------------------ */
+
+/* Small Screens (Phones) */
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav a {
+    font-size: 1rem;
+    padding: 0.7em 1em;
+  }
+
+  hero-card {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+
+  hero-card img,
+  .rta-image {
+    max-width: 100%;
+    max-height: 200px;
+  }
+}
+
+/* Medium Screens (Tablet / small laptops) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  nav ul {
+    justify-content: space-around;
+  }
+
+  hero-card {
+    max-width: 600px;
+  }
+
+  hero-card img,
+  .rta-image {
+    max-height: 250px;
+  }
+}
+
+/* Large Screens (Desktops) */
+@media (min-width: 1025px) {
+  hero-card {
+    max-width: 800px;
+  }
+
+  hero-card img,
+  .rta-image {
+    max-height: 350px;
+  }
+}
