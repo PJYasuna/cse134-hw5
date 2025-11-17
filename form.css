@@ -1,0 +1,150 @@
+:root {
+  --bg: #f4f4f9;
+  --form-bg: white;
+  --text: black;
+
+  --border-default: #ccc;
+  --border-placeholder: #999;
+  --border-invalid: #d9534f;
+  --border-valid: #28a745;
+
+  --bg-invalid: #ffe6e6;
+  --bg-valid: #e6ffea;
+
+  --button-bg: #f39c12;
+  --button-hover: #0056b3;
+
+  --error-text: #d9534f;
+  --info-text: #28a745;
+}
+
+[data-theme="dark"] {
+  --bg: #111;
+  --text: #eee;
+  --form-bg: #222;
+
+  --border-default: #666;
+  --border-placeholder: #555;
+
+  --button-bg: #444;
+  --button-hover: #999;
+
+  --bg-invalid: #442222;
+  --bg-valid: #225522;
+
+  --error-text: #ff6b6b;
+  --info-text: #8cff8c;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Form 样式 */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--form-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Labels */
+label {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+/* Inputs & textareas */
+input,
+textarea,
+button {
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Placeholder 样式 */
+input:required:placeholder-shown,
+textarea:required:placeholder-shown {
+  border-color: var(--border-placeholder);
+  background-color: #fafafa;
+}
+
+/* Invalid after interaction */
+input:user-invalid,
+textarea:user-invalid {
+  border-color: var(--border-invalid);
+  background-color: var(--bg-invalid);
+}
+
+/* Valid */
+input:valid,
+textarea:valid {
+  border-color: var(--border-valid);
+  background-color: var(--bg-valid);
+}
+
+/* Button 样式 */
+button {
+  background-color: var(--button-bg);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--button-hover);
+}
+
+/* Output messages */
+output {
+  display: block;
+  min-height: 1.2em;
+  font-size: 0.9rem;
+  color: var(--error-text);
+}
+
+#info {
+  color: var(--info-text);
+}
+
+
+#theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+
+  background-color: var(--button-bg);
+  color: white;
+  border: none;
+  border-radius: 6px;
+
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  z-index: 999;
+}
+
+#theme-toggle:hover {
+  background-color: var(--button-hover);
+}

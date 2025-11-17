@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <link rel="stylesheet" href="form.css">
+  <script src="toggle.js" defer></script>
+  <noscript>Theme switching is disabled when JavaScript is off.</noscript>
+  <button id="theme-toggle">Toggle Theme</button>
+</head>
+<body>
+  <form action="https://httpbin.org/post" method="POST" novalidate>
+    <label for="name">Name <span aria-hidden="true">*</span></label>
+    <input type="text" id="name" name="name"
+           required minlength="2" maxlength="40" pattern="[A-Za-z\s]+" 
+           placeholder="Your name">
+
+    <label for="email">Email <span aria-hidden="true">*</span></label>
+    <input type="email" id="email" name="email"
+           required placeholder="example@example.com">
+
+    <label for="comments">Comments <span aria-hidden="true">*</span></label>
+    <textarea id="comments" name="comments" rows="4"
+              required minlength="5" maxlength="300"
+              placeholder="Enter your message here"></textarea>
+    <div id="commentCounter" class="counter"></div>
+
+    <input type="hidden" name="form_errors" id="form_errors">
+    <input type="hidden" name="possible_bot" value="true">
+
+    <button type="submit">Submit</button>
+
+    <output id="error"></output>
+    <output id="info"></output>
+  </form>
+
+<script>
+console.log("script loaded");
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector("form");
+    const errorBox = document.getElementById("error");
+    const infoBox = document.getElementById("info");
+
+    const nameField = document.getElementById("name");
+    const emailField = document.getElementById("email");
+    const commentsField = document.getElementById("comments");
+    const commentCounter = document.getElementById("commentCounter");
+
+    // console.log("Form element:", form); 
+    let form_errors = [];
+    const namePattern = /^[A-Za-z\s]+$/;
+
+
+
+    function recordError(fieldName, value, reason) {
+        form_errors.push({ field: fieldName, value: value, reason: reason });
+        console.log("Error recorded:", { field: fieldName, value: value, reason: reason });
+    }
+
+    function showError(msg) {
+        errorBox.textContent = msg;
+        errorBox.style.opacity = 1;
+        setTimeout(() => {
+            errorBox.style.opacity = 0;
+        }, 6000);
+    }
+
+    function flashField(field) {
+        field.style.transition = "background-color 1s";
+        const original = field.style.backgroundColor;
+        field.style.backgroundColor = "#ffd1d1";
+        setTimeout(() => field.style.backgroundColor = original, 1500);
+    }
+
+    // Name validation
+    nameField.addEventListener("input", () => {
+        if (!namePattern.test(nameField.value)) {
+            nameField.value = nameField.value.replace(/[^A-Za-z\s]/g, "");
+            flashField(nameField);
+            showError("Only letters and spaces are allowed in Name.");
+        }
+
+        nameField.setCustomValidity("");
+        if (!nameField.checkValidity()) {
+            nameField.setCustomValidity("Name must be 2–40 characters (letters only).");
+        }
+    });
+
+    // Email validation
+    emailField.addEventListener("input", () => {
+        emailField.setCustomValidity("");
+        if (!emailField.checkValidity()) {
+            emailField.setCustomValidity("Please enter a valid email address.");
+        }
+    });
+
+    // Comments character counter and validation
+    commentsField.addEventListener("input", () => {
+        const max = parseInt(commentsField.getAttribute("maxlength"));
+        const len = commentsField.value.length;
+        const remaining = max - len;
+
+        commentCounter.textContent = `${remaining} characters remaining`;
+        commentCounter.classList.remove("warning", "danger");
+
+        commentsField.setCustomValidity("");
+
+        if (remaining <= max * 0.3 && remaining > 0) {
+            commentCounter.classList.add("warning");
+        }
+        if (remaining <= 0) {
+            commentCounter.classList.add("danger");
+            commentsField.setCustomValidity("Reached maximum character limit.");
+            flashField(commentsField);
+        }
+    });
+
+    // Form submit
+    form.addEventListener("submit", (e) => {
+        const fields = [
+            { name: "name", el: nameField },
+            { name: "email", el: emailField },
+            { name: "comments", el: commentsField }
+        ];
+
+        fields.forEach(({ name, el }) => {
+            if (!el.checkValidity()) {
+                recordError(name, el.value, el.validationMessage);
+                flashField(el);
+            }
+        });
+
+        console.log("form_errors array:", form_errors);
+
+        document.getElementById("form_errors").value = JSON.stringify(form_errors);
+
+        if (!form.checkValidity()) {
+            e.preventDefault();
+            showError("Please correct the highlighted fields.");
+        } else {
+            infoBox.textContent = "Form submitted successfully!";
+            infoBox.style.opacity = 1;
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>
