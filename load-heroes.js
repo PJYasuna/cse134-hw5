@@ -124,7 +124,7 @@ function displayHeroes(heroes, source) {
 }
 
 
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', () => {
   initializeLocalStorage();
   
   const loadLocalBtn = document.getElementById('load-local');
