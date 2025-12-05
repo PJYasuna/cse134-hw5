@@ -1,11 +1,7 @@
-// ===== Configuration =====
-// IMPORTANT: Replace these with your actual JSONBin credentials
-const JSONBIN_BIN_ID = '693100ba43b1c97be9d698c6';  // Replace with your Bin ID
-const JSONBIN_API_KEY = '$2a$10$rBYfSzm9VwzN4sErYkobZOO09f5DujfX4qHUkRBPPbEuixATQRB0i';  // Replace with your API Key
+const JSONBIN_BIN_ID = '693100ba43b1c97be9d698c6';  
+const JSONBIN_API_KEY = '$2a$10$rBYfSzm9VwzN4sErYkobZOO09f5DujfX4qHUkRBPPbEuixATQRB0i';  
 
-// ===== Initialize localStorage with sample data =====
 function initializeLocalStorage() {
-  // Check if data already exists
   if (!localStorage.getItem('heroes')) {
         const localHeroes = {
         "heroes": [
@@ -43,7 +39,7 @@ function initializeLocalStorage() {
   }
 }
 
-// ===== Load heroes from localStorage =====
+
 function loadLocalHeroes() {
   try {
     const data = localStorage.getItem('heroes');
@@ -51,7 +47,7 @@ function loadLocalHeroes() {
     if (!data) {
       alert('No local data found! Initializing with sample data...');
       initializeLocalStorage();
-      return loadLocalHeroes(); // Try again after initialization
+      return loadLocalHeroes();
     }
     
     const heroesData = JSON.parse(data);
@@ -64,10 +60,9 @@ function loadLocalHeroes() {
   }
 }
 
-// ===== Load heroes from JSONBin API =====
+
 async function loadRemoteHeroes() {
   try {
-    // Show loading message
     const container = document.getElementById('hero-container');
     container.innerHTML = '<p class="loading-message">Loading heroes from server...</p>';
     
@@ -83,8 +78,6 @@ async function loadRemoteHeroes() {
     }
     
     const data = await response.json();
-    
-    // JSONBin returns data in a 'record' property
     const heroesData = data.record || data;
     
     displayHeroes(heroesData.heroes, 'remote');
@@ -93,30 +86,23 @@ async function loadRemoteHeroes() {
   } catch (error) {
     console.error('Error loading remote heroes:', error);
     alert('Error loading remote data: ' + error.message + '\n\nMake sure you have set your JSONBIN_BIN_ID and JSONBIN_API_KEY in load-heroes.js!');
-    
-    // Clear loading message
     const container = document.getElementById('hero-container');
     container.innerHTML = '<p class="error-message">Failed to load remote data. Check console for details.</p>';
   }
 }
 
-// ===== Display heroes on the page =====
+
 function displayHeroes(heroes, source) {
   const container = document.getElementById('hero-container');
-  
-  // Clear existing content
   container.innerHTML = '';
   
   if (!heroes || heroes.length === 0) {
     container.innerHTML = '<p class="loading-message">No heroes found!</p>';
     return;
   }
-  
-  // Create hero cards
   heroes.forEach(hero => {
     const heroCard = document.createElement('hero-card');
     
-    // Set attributes
     heroCard.setAttribute('image', hero.image);
     heroCard.setAttribute('alt', hero.alt);
     heroCard.setAttribute('name', hero.name);
@@ -124,13 +110,11 @@ function displayHeroes(heroes, source) {
     heroCard.setAttribute('skill1', hero.skill1);
     heroCard.setAttribute('skill2', hero.skill2);
     heroCard.setAttribute('skill3', hero.skill3);
-    
-    // Set comments as JSON string
+
     if (hero.comments) {
       heroCard.setAttribute('comments', JSON.stringify(hero.comments));
     }
     
-    // Add data source indicator (optional, for debugging)
     heroCard.setAttribute('data-source', source);
     
     container.appendChild(heroCard);
@@ -139,12 +123,10 @@ function displayHeroes(heroes, source) {
   console.log(`Displayed ${heroes.length} heroes from ${source}`);
 }
 
-// ===== Event Listeners =====
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize local storage with sample data if needed
   initializeLocalStorage();
   
-  // Load Local button
   const loadLocalBtn = document.getElementById('load-local');
   if (loadLocalBtn) {
     loadLocalBtn.addEventListener('click', () => {
@@ -153,7 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  // Load Remote button
   const loadRemoteBtn = document.getElementById('load-remote');
   if (loadRemoteBtn) {
     loadRemoteBtn.addEventListener('click', () => {

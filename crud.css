@@ -1,0 +1,385 @@
+/* Create Button - Green */
+.create-btn {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  margin-top: 1rem;
+}
+
+.create-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #45a049, #4CAF50);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4);
+}
+
+/* Update Button - Blue */
+.update-btn {
+  background: linear-gradient(135deg, #2196F3, #1976D2);
+  margin-top: 1rem;
+}
+
+.update-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1976D2, #2196F3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(33, 150, 243, 0.4);
+}
+
+/* Delete Button - Red */
+.delete-btn {
+  background: linear-gradient(135deg, #f44336, #d32f2f);
+  margin-top: 1rem;
+}
+
+.delete-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #d32f2f, #f44336);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(244, 67, 54, 0.4);
+}
+
+/* Cancel Button - Gray */
+.cancel-btn {
+  background: linear-gradient(135deg, #757575, #616161);
+  margin-top: 0.5rem;
+}
+
+.cancel-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #616161, #757575);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(117, 117, 117, 0.4);
+}
+
+.crud-btn:active {
+  transform: translateY(0);
+}
+
+.crud-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}/* ===== Basic Styles for CRUD Page ===== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5;
+  padding: 2rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+}
+
+/* ===== Simple Hero Card Styles ===== */
+simple-hero-card {
+  display: block;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem auto;
+  background-color: white;
+  color: #333;
+  font-family: 'Arial', sans-serif;
+  animation: fadeIn 0.5s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 800px;
+}
+
+simple-hero-card .simple-hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+simple-hero-card h2 {
+  color: #333;
+  margin: 0 0 1rem 0;
+  font-size: 1.8rem;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+simple-hero-card .skills-list li strong {
+  color: #4CAF50;
+  background: rgba(76, 175, 80, 0.15);
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+simple-hero-card .comments-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+simple-hero-card .comments-section strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: #4CAF50;
+}
+
+simple-hero-card .skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+simple-hero-card .skills-list li {
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+}
+
+simple-hero-card .comments-section ol {
+  margin: 0.5rem 0 0 1.5rem;
+  padding: 0;
+}
+
+simple-hero-card .comments-section ol li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.crud-section {
+  background-color: white;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.crud-section h2 {
+  color: #444;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+.crud-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #555;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: 'Arial', sans-serif;
+  background-color: white;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #999;
+  opacity: 0.7;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 60px;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+.hero-select {
+  max-width: 100%;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.5rem;
+}
+
+.crud-btn {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: white;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Load Hero Button - Orange */
+#load-hero-btn,
+.load-btn {
+  background: linear-gradient(135deg, #FF9800, #F57C00);
+}
+
+#load-hero-btn:hover:not(:disabled),
+.load-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #F57C00, #FF9800);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 152, 0, 0.4);
+}
+
+/* Refresh Button - Purple */
+#refresh-display-btn,
+.refresh-btn {
+  background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+  margin-bottom: 1.5rem;
+}
+
+#refresh-display-btn:hover:not(:disabled),
+.refresh-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #7B1FA2, #9C27B0);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(156, 39, 176, 0.4);
+}
+
+/* Heroes Display Container */
+#heroes-display {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Success/Error Messages */
+.success-message {
+  background-color: #4CAF50;
+  color: white;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+  text-align: center;
+  animation: slideIn 0.3s ease-out;
+}
+
+.error-message {
+  background-color: #f44336;
+  color: white;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+  text-align: center;
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Dark Theme Adjustments */
+[data-theme="dark"] .crud-section {
+  background-color: var(--hero-bg);
+  border-color: var(--hero-border);
+}
+
+[data-theme="dark"] .crud-section h2 {
+  color: var(--hero-strong);
+}
+
+[data-theme="dark"] .form-group label {
+  color: var(--hero-text);
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group textarea,
+[data-theme="dark"] .form-group select {
+  background-color: #3d2817;
+  border-color: #8b5a3c;
+  color: #f2f1ed;
+}
+
+[data-theme="dark"] .form-group input::placeholder,
+[data-theme="dark"] .form-group textarea::placeholder {
+  color: #ccc;
+}
+
+[data-theme="dark"] .form-group input:focus,
+[data-theme="dark"] .form-group textarea:focus,
+[data-theme="dark"] .form-group select:focus {
+  border-color: #3a7a32;
+  box-shadow: 0 0 0 3px rgba(58, 122, 50, 0.2);
+}
+
+[data-theme="dark"] .hero-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23f2f1ed' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .crud-section {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    font-size: 0.95rem;
+    padding: 0.65rem;
+  }
+  
+  .crud-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .crud-section {
+    max-width: 700px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .crud-section {
+    max-width: 900px;
+  }
+}

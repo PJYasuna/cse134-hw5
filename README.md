@@ -1,2 +1,2 @@
-# CSE134 HW4
-Epic Seven Guide Website, currently just text and css.
+# CSE134 HW5
+Epic Seven Guide Website

@@ -4,18 +4,15 @@ class HeroCard extends HTMLElement {
   }
   
   connectedCallback() {
-    // 检查是否已经处理过（避免重复执行）
     if (this.querySelector('.hero-card-content')) {
       return;
     }
     
-    // 获取基本属性
     const imageSrc = this.getAttribute('image') || '';
     const imageAlt = this.getAttribute('alt') || 'Hero image';
     const heroName = this.getAttribute('name') || 'Hero Name';
     const readMoreLink = this.getAttribute('link') || '#';
     
-    // 尝试从 data 属性读取（JSON 格式）
     let heroData = null;
     const dataAttr = this.getAttribute('data');
     if (dataAttr) {
@@ -26,12 +23,10 @@ class HeroCard extends HTMLElement {
       }
     }
     
-    // 获取技能（优先使用 heroData，否则使用单独的属性）
     const skill1 = heroData?.skills?.[0] || this.getAttribute('skill1') || '';
     const skill2 = heroData?.skills?.[1] || this.getAttribute('skill2') || '';
     const skill3 = heroData?.skills?.[2] || this.getAttribute('skill3') || '';
-    
-    // 获取评论
+
     let commentsList = [];
     if (heroData?.comments) {
       commentsList = heroData.comments;
@@ -46,14 +41,13 @@ class HeroCard extends HTMLElement {
       }
     }
     
-    // 清空
+
     this.innerHTML = '';
     
-    // 创建容器
     const container = document.createElement('div');
     container.className = 'hero-card-content';
     
-    // 创建 picture 元素
+
     const picture = document.createElement('picture');
     const source = document.createElement('source');
     source.srcset = imageSrc;
@@ -70,12 +64,12 @@ class HeroCard extends HTMLElement {
     picture.appendChild(img);
     container.appendChild(picture);
     
-    // 创建标题
+
     const title = document.createElement('h2');
     title.textContent = heroName;
     container.appendChild(title);
     
-    // 创建技能部分
+
     if (skill1 || skill2 || skill3) {
       const skillsDiv = document.createElement('div');
       skillsDiv.className = 'hero-skills';
@@ -104,7 +98,7 @@ class HeroCard extends HTMLElement {
       container.appendChild(skillsDiv);
     }
     
-    // 创建评论部分
+ 
     if (commentsList && commentsList.length > 0) {
       const commentsDiv = document.createElement('div');
       commentsDiv.className = 'hero-comments';
@@ -125,7 +119,7 @@ class HeroCard extends HTMLElement {
       container.appendChild(commentsDiv);
     }
     
-    // 创建链接
+
     const linksDiv = document.createElement('div');
     linksDiv.className = 'hero-links';
     const link = document.createElement('a');
@@ -136,15 +130,14 @@ class HeroCard extends HTMLElement {
     link.textContent = `Learn More About ${heroName}`;
     linksDiv.appendChild(link);
     container.appendChild(linksDiv);
-    
-    // 添加到元素中
+ 
     this.appendChild(container);
     
     console.log('HeroCard created:', heroName, 'Image:', imageSrc);
   }
 }
 
-// 注册自定义元素
+
 customElements.define('hero-card', HeroCard);
 
 console.log('HeroCard custom element registered successfully!');

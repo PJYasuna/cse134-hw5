@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Management - CRUD Operations</title>
+    <link rel="stylesheet" href="crud.css">
+    <script src="simple-hero-card.js" defer></script>
+    <script src="crud.js" defer></script>
+</head>
+<body>
+    <h1>Hero Management (CRUD Operations)</h1>
+    <p class="subtitle">Create, Update, and Delete heroes in localStorage</p>
+
+    <!-- CREATE Form -->
+    <section class="crud-section">
+        <h2>Create New Hero</h2>
+        <form id="create-form">
+            <div class="form-group">
+                <label for="create-name">Hero Name:</label>
+                <input type="text" id="create-name" required placeholder="e.g., Arbiter Vildred">
+            </div>
+            
+            <div class="form-group">
+                <label for="create-skill1">Skill 1:</label>
+                <textarea id="create-skill1" required rows="2" placeholder="Describe the first skill"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="create-skill2">Skill 2:</label>
+                <textarea id="create-skill2" required rows="2" placeholder="Describe the second skill"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="create-skill3">Skill 3:</label>
+                <textarea id="create-skill3" required rows="2" placeholder="Describe the third skill"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="create-comment1">Comment 1:</label>
+                <textarea id="create-comment1" required rows="2" placeholder="Your first comment"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="create-comment2">Comment 2 (Optional):</label>
+                <textarea id="create-comment2" rows="2" placeholder="Your second comment (optional)"></textarea>
+            </div>
+            
+            <button type="submit" class="crud-btn create-btn">Create Hero</button>
+        </form>
+    </section>
+
+    <!-- UPDATE Form -->
+    <section class="crud-section">
+        <h2>Update Existing Hero</h2>
+        <div class="form-group">
+            <label for="update-select">Select Hero to Update:</label>
+            <select id="update-select" class="hero-select">
+                <option value="">-- Select a hero --</option>
+            </select>
+            <button type="button" id="load-hero-btn" class="crud-btn load-btn">Load Hero Data</button>
+        </div>
+        
+        <form id="update-form" class="crud-form" style="display: none;">
+            <input type="hidden" id="update-index">
+            
+            <div class="form-group">
+                <label for="update-name">Hero Name:</label>
+                <input type="text" id="update-name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="update-skill1">Skill 1:</label>
+                <textarea id="update-skill1" required rows="2"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="update-skill2">Skill 2:</label>
+                <textarea id="update-skill2" required rows="2"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="update-skill3">Skill 3:</label>
+                <textarea id="update-skill3" required rows="2"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="update-comment1">Comment 1:</label>
+                <textarea id="update-comment1" required rows="2"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="update-comment2">Comment 2 (Optional):</label>
+                <textarea id="update-comment2" rows="2"></textarea>
+            </div>
+            
+            <button type="submit" class="crud-btn update-btn">Update Hero</button>
+            <button type="button" id="cancel-update-btn" class="crud-btn cancel-btn">Cancel</button>
+        </form>
+    </section>
+
+    <!-- DELETE Section -->
+    <section class="crud-section">
+        <h2>Delete Hero</h2>
+        <div class="form-group">
+            <label for="delete-select">Select Hero to Delete:</label>
+            <select id="delete-select" class="hero-select">
+                <option value="">-- Select a hero --</option>
+            </select>
+        </div>
+        <button type="button" id="delete-btn" class="crud-btn delete-btn">Delete Hero</button>
+    </section>
+
+    <!-- Display Current Heroes -->
+    <section class="crud-section">
+        <h2>Current Heroes in localStorage</h2>
+        <button id="refresh-display-btn" class="crud-btn refresh-btn">Refresh Display</button>
+        <div id="heroes-display"></div>
+    </section>
+</body>
+</html>
