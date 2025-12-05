@@ -142,6 +142,13 @@ document.addEventListener('DOMContentLoaded', () => {
       loadRemoteHeroes();
     });
   }
+
+  if (document.getElementById('hero-container')) {
+    // delay run to wait for View Transition DOM replace
+    setTimeout(() => {
+        loadLocalHeroes();  // or loadRemoteHeroes()
+    }, 50);
+  }
   
   console.log('Data loading buttons initialized');
 });
